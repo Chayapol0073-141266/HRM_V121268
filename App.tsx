@@ -67,7 +67,9 @@ const App: React.FC = () => {
   };
 
   const handleSeedData = async () => {
-    if (!confirm('ยืนยันการล้างข้อมูลเก่าและสร้างข้อมูลตัวอย่างใหม่ลงฐานข้อมูล? (ควรทำเมื่อเริ่มระบบครั้งแรก)')) return;
+    const confirmMsg = prompt("พิมพ์ 'CONFIRM' เพื่อยืนยันการล้างข้อมูลเก่าและสร้างข้อมูลตัวอย่างใหม่:");
+    if (confirmMsg !== 'CONFIRM') return;
+
     setIsSeeding(true);
     const success = await resetDatabase();
     if (success) {
@@ -97,7 +99,7 @@ const App: React.FC = () => {
                <Logo className="w-24 h-24" />
             </div>
             <h1 className="text-2xl font-bold text-gray-800">HRM SDcon</h1>
-            <p className="text-gray-500">ลงชื่อเข้าใช้ระบบ (Supabase Connected)</p>
+            <p className="text-gray-500 mt-1">ลงชื่อเข้าใช้ระบบบริหารทรัพยากรบุคคล</p>
           </div>
           
           <form onSubmit={handleLogin} className="space-y-6">
@@ -136,17 +138,16 @@ const App: React.FC = () => {
              <p>บัญชีทดสอบระบบ:</p>
              <p>User: chayapol / Pass: @Thansandee141266</p>
              <p>User: emp01 / Pass: 1234</p>
-             <p>User: mgr01 / Pass: 1234</p>
           </div>
 
           <div className="mt-8 pt-4 border-t border-gray-100 flex justify-center">
             <button 
                 onClick={handleSeedData}
                 disabled={isSeeding}
-                className="flex items-center text-xs text-orange-500 hover:text-orange-700 transition hover:underline"
+                className="flex items-center text-xs text-orange-400 hover:text-orange-600 transition hover:underline"
             >
                 <Database size={14} className={`mr-1 ${isSeeding ? 'animate-spin' : ''}`} />
-                {isSeeding ? 'กำลังสร้างข้อมูล...' : 'ยังไม่มีข้อมูล? คลิกเพื่อสร้างข้อมูลเริ่มต้น (Seed Data)'}
+                {isSeeding ? 'กำลังสร้างข้อมูล...' : 'Reset & Seed Data (สำหรับเริ่มระบบใหม่)'}
             </button>
           </div>
         </div>

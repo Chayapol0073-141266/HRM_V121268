@@ -49,7 +49,9 @@ export const SettingsPanel: React.FC = () => {
   };
 
   const handleFactoryReset = async () => {
-    if (confirm("คำเตือน: ข้อมูลทั้งหมดในฐานข้อมูลจะถูกลบและสร้างใหม่เป็นข้อมูลตัวอย่าง (Mock Data) \n\nใช้สำหรับกรณีฐานข้อมูลเสียหายหรือต้องการเริ่มระบบใหม่\nคุณแน่ใจหรือไม่?")) {
+    const confirmCode = prompt("DANGER ZONE: \nพิมพ์ 'RESET' เพื่อยืนยันการล้างข้อมูลทั้งหมดในฐานข้อมูล:");
+    
+    if (confirmCode === 'RESET') {
         setIsResetting(true);
         const success = await resetDatabase();
         if (success) {
@@ -171,7 +173,7 @@ export const SettingsPanel: React.FC = () => {
                     className="flex items-center px-4 py-2 border border-red-200 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition"
                 >
                     <RefreshCw size={18} className={`mr-2 ${isResetting ? 'animate-spin' : ''}`} />
-                    {isResetting ? 'กำลังดำเนินการ...' : 'ล้างและสร้างข้อมูลใหม่ (Reset & Seed DB)'}
+                    {isResetting ? 'กำลังดำเนินการ...' : 'ล้างและสร้างข้อมูลใหม่ (Factory Reset)'}
                 </button>
             </div>
           </div>
