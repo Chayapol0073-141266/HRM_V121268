@@ -1,0 +1,9 @@
+{
+  "name": "HRM SDcon แบบปกติ ยังไม่ได้อัพขึ้นระบบ",
+  "description": "ระบบ Dashboard HRM ทันสมัยในธีมสีส้มพาสเทล รองรับการลงเวลาผ่านพิกัด GPS, การอนุมัติการลา และรายงานสำหรับผู้บริหาร",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
